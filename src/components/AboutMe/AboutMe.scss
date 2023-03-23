@@ -1,0 +1,208 @@
+@use '../../mixins';
+@use '../../variables';
+
+.aboutMe{
+    min-height: 100vh;
+    width: 100%;
+    @include mixins.flex-center;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-around;
+    &-group{
+        @include mixins.flex-center;
+        height: 100%;
+        margin-top: 2rem;
+        &-box {
+            position: relative;
+
+            &-picture {
+                width: 300px;
+                height: 430px;
+                &::after{
+                    @include mixins.horizontalBar;
+                    bottom: -12px;
+                    left: -12px;
+                    animation: 4s growSide infinite;
+                }
+                &::before{
+                    @include mixins.verticalBar;
+                    bottom: -12px;
+                    left: -12px;
+                    animation: 4s growUp infinite;
+                }
+                &-img {
+                    width: 100%;
+                    height: 430px;
+                }
+            }
+            &-picture2 {
+                width: 300px;
+                height: 430px;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                &::after {
+                    @include mixins.horizontalBar;
+                    top: -12px;
+                    right: -12px;
+                    animation: 4s growSide infinite;
+                }
+                &::before {
+                    @include mixins.verticalBar;
+                    top: -12px;
+                    right: -12px;
+                    animation: 4s growUp  infinite;
+                }
+            }
+ 
+        }
+    }
+    &-content{
+        height: 450px;
+        max-width: 60%;
+        color: #fff;
+        & h2{
+            margin-bottom: 2rem;
+            color: #fff;
+
+            &::after{
+                @include mixins.horizontalBar;
+                width:50px;
+            }
+        }
+        &-boxInfo {
+            min-height: 40%;
+            width: 100%;
+            border: 1px solid variables.$font-color-primary;
+            margin: 1rem 0;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            
+            & div{
+                margin-top: 1rem;
+                margin-left: 1rem;
+
+                & p:first-child {
+                    font-size: .8rem;
+                    color: variables.$font-color-primary;
+                }
+                & a{
+                    font-size: .8rem;
+                    color: variables.$font-color-secondary;
+                }
+            }
+        }
+        & a button {
+            margin-top: auto;
+            padding: 8px 16px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            background-color: variables.$font-color-primary;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s linear all;
+            cursor: pointer;
+            &:hover{
+                background-color: variables.$font-color-secondary;
+            }
+        }
+    }
+    @media screen and (max-width:1100px) {
+        & {
+            flex-direction: column;
+        }
+        &-content {
+            max-width: 100%;
+        }
+        // .aboutMe-group-box-picture, .aboutMe-group-box-picture2, .aboutMe-group-box-picture-img {
+        //     width: 300px;
+        //     height: 400px;
+        // }    
+    }
+}
+@media screen and (max-width: 768px) {
+    .aboutMe {
+        display: flex;   
+        align-items: center;
+        justify-content: center;
+        &-group {
+            display: none;
+        }
+        &-content {
+            height: 100%;
+            &-boxInfo {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:560px) {
+    .aboutMe {
+        &-content > p {
+            display: none;
+        }
+        &-content-boxInfo{
+            grid-template-columns: 1fr;
+        }
+    }
+}
+// @keyframes rotateToLeft {
+//     0% {
+//         transform: rotate(-45deg);
+//     }
+//     25%{
+//         transform: rotate(0deg);
+//     }
+//     50%{
+//         transform: rotate(0deg);
+//     }
+//     75%{
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         transform: rotate(-45deg);
+//     }
+// }
+// @keyframes rotateToUp {
+//     0% {
+//         transform: rotate(45deg);
+//     }
+//     25%{
+//         transform: rotate(0deg);
+//     }
+//     50%{
+//         transform: rotate(0deg);
+//     }
+//     75%{
+//         transform: rotate(0deg);
+//     }
+//     100%{
+//         transform: rotate(45deg);
+//     }
+// }
+@keyframes growUp {
+    0%{
+        height: 0px;
+    }
+    50%{
+        height: 100px;
+    }
+    100%{
+        height: 0px;
+    }
+}
+@keyframes growSide {
+    0%{
+        width: 0px;
+    }
+    50%{
+        width: 100px;
+    }
+    100%{
+        width: 0px;
+    }
+}

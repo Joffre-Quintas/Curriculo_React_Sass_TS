@@ -1,0 +1,38 @@
+@use '../../../mixins';
+@use '../../../variables';
+
+.header {
+    @include mixins.container;
+    @include mixins.flex-center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    
+    &-title{
+        font-style: italic;
+    }
+    &-list{
+        @include mixins.flex-center;
+        list-style: none;
+        width: 400px;
+        margin-left: 5%;
+
+        &-item a{
+            text-decoration: none;
+            &:hover{
+                transition: 0.3s;
+                color: variables.$font-color-secondary;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    .header {
+        justify-content: center; 
+        &-list {
+            display: none;
+        }
+    }
+}
